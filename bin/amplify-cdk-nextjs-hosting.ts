@@ -5,8 +5,8 @@ import { HostingStack } from '../lib/hostingStack'
 
 const app = new cdk.App()
 new HostingStack(app, 'AmplifyCdkNextjsHostingStack', {
-	githubOauthToken: '',
-	owner: '',
-	repository: '',
+	githubOauthTokenName: 'github-token',
+	owner: 'mtliendo',
+	repository: 'simple-nextjs',
 	environmentVariables: { name: 'michael', place: 'henry' },
 })
