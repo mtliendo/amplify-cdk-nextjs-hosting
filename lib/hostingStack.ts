@@ -17,7 +17,7 @@ interface HostingStackProps extends StackProps {
 export class HostingStack extends Stack {
 	constructor(scope: Construct, id: string, props: HostingStackProps) {
 		super(scope, id, props)
-		//https://.d31xw924ohrfr1.amplifyapp.com
+		//https://.d31xw924ohrfr1.amplifyapp.com Not sure how to set 'main' as the production branch name
 		const amplifyApp = new App(this, 'MyNewApp', {
 			appName: 'NextJS from CDK',
 			sourceCodeProvider: new GitHubSourceCodeProvider({
