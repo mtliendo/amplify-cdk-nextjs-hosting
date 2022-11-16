@@ -1,4 +1,4 @@
-import { SecretValue, Stack, StackProps } from 'aws-cdk-lib'
+import { CfnOutput, SecretValue, Stack, StackProps } from 'aws-cdk-lib'
 import { Construct } from 'constructs'
 import * as codebuild from 'aws-cdk-lib/aws-codebuild'
 import {
@@ -17,9 +17,8 @@ interface HostingStackProps extends StackProps {
 export class HostingStack extends Stack {
 	constructor(scope: Construct, id: string, props: HostingStackProps) {
 		super(scope, id, props)
-		//https://.d31xw924ohrfr1.amplifyapp.com Not sure how to set 'main' as the production branch name
-		const amplifyApp = new App(this, 'MyNewApp', {
-			appName: 'NextJS from CDK',
+		const amplifyApp = new App(this, 'AmplifyCDK', {
+			appName: 'NextJS app from CDK',
 			sourceCodeProvider: new GitHubSourceCodeProvider({
 				owner: props.owner,
 				repository: props.repository,
@@ -57,7 +56,11 @@ export class HostingStack extends Stack {
 		})
 
 		amplifyApp.addBranch('main', {
-			branchName: 'main',
+			stage: 'PRODUCTION',
+		})
+
+		new CfnOutput(this, 'appId', {
+			value: amplifyApp.appId,
 		})
 	}
 }
