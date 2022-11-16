@@ -6,7 +6,10 @@ import { HostingStack } from '../lib/hostingStack'
 const app = new cdk.App()
 
 new HostingStack(app, 'AmplifyCdkNextjsHostingStack2', {
-	githubOauthTokenName: 'github-token', //name given to plaintext secret in secretsManager
+	// Name given to plaintext secret in secretsManager.
+
+	// For the token scope on Github, only the admin:repo_hook scope is needed
+	githubOauthTokenName: 'github-token',
 	owner: 'mtliendo',
 	repository: 'simple-nextjs',
 	environmentVariables: { name: 'michael', place: 'Midwest' },
